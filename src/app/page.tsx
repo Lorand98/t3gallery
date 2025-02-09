@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import { db } from "~/server/db";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const posts = await db.query.posts.findMany();
   // This needs to be server-side as it reads from the filesystem
@@ -10,7 +12,6 @@ export default async function HomePage() {
     id: index + 1,
     source: image,
   }));
-
 
   return (
     <main className="">
