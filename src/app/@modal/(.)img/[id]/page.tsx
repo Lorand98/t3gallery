@@ -1,6 +1,7 @@
-import Image from "next/image";
+import { deleteAction } from "~/app/action";
 import { getImage } from "~/server/queries";
 import { Modal } from "./modal";
+import { FullPageImageView } from "~/_components/full-page-image-view";
 
 export default async function PhotoModal({
   params,
@@ -12,11 +13,9 @@ export default async function PhotoModal({
   if (isNaN(idNumber)) {
     return <div>Invalid ID</div>;
   }
-
-  const image = await getImage(idNumber);
   return (
     <Modal>
-      <img src={image.url} alt={image.name} className="max-w-96"/>
+      <FullPageImageView photoId={photoId} />
     </Modal>
   );
 }
